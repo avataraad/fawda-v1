@@ -8,7 +8,7 @@ const Index = () => {
         <MobileHeader />
         <SearchBar />
         <div className="px-4 mt-2 mb-4">
-          <h2 className="text-xl font-serif text-gray-900">My stuff</h2>
+          <h2 className="text-xl font-serif text-gray-900 py-0 mb-4">My stuff</h2>
         </div>
       </div>
       <div className="pt-[172px]">
