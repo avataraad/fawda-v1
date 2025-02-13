@@ -1,15 +1,13 @@
-
 import { Box, Minus } from "lucide-react";
-
 interface ActionPanelProps {
   onClose: () => void;
 }
-
-const ActionPanel = ({ onClose }: ActionPanelProps) => {
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50">
+const ActionPanel = ({
+  onClose
+}: ActionPanelProps) => {
+  return <div className="fixed inset-0 bg-opacity-50 bg-black/0">
       <div className="fixed bottom-0 left-0 right-0">
-        <div className="bg-gray-900 text-white p-4 rounded-t-[2rem] mx-4 shadow-lg">
+        <div className="bg-gray-900 text-white p-4 rounded-t-[2rem] mx-4 shadow-lg px-[16px] py-[20px] ">
           <h2 className="text-xl font-medium mb-4">What's up?</h2>
           <div className="grid grid-cols-2 gap-4">
             <button className="flex flex-col items-center text-center bg-gray-700 rounded-xl p-4">
@@ -31,16 +29,11 @@ const ActionPanel = ({ onClose }: ActionPanelProps) => {
               </span>
             </button>
           </div>
-          <button 
-            onClick={onClose}
-            className="mt-3 w-full flex justify-center"
-          >
+          <button onClick={onClose} className="mt-3 w-full flex justify-center">
             <Minus className="h-6 w-6" />
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ActionPanel;
