@@ -11,11 +11,19 @@ const items: Item[] = [
   { id: 2, title: "Item 2" },
   { id: 3, title: "Item 3" },
   { id: 4, title: "Item 4" },
+  { id: 5, title: "Item 5" },
+  { id: 6, title: "Item 6" },
+  { id: 7, title: "Item 7" },
+  { id: 8, title: "Item 8" },
+  { id: 9, title: "Item 9" },
+  { id: 10, title: "Item 10" },
+  { id: 11, title: "Item 11" },
+  { id: 12, title: "Item 12" },
 ];
 
 const ItemGrid = () => {
   return (
-    <div className="px-4 grid grid-cols-2 gap-4">
+    <div className="px-4 grid grid-cols-2 gap-4 pb-24">
       {items.map((item) => (
         <div
           key={item.id}
