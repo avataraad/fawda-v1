@@ -41,7 +41,7 @@ const items: Item[] = [{
   title: "Item 12"
 }];
 const ItemGrid = () => {
-  return <div className="px-4 grid grid-cols-2 gap-4 pb-24">
+  return <div className="px-4 grid grid-cols-2 gap-4 pb-24 pt-4">
       {items.map(item => <div key={item.id} className="aspect-square rounded-2xl border border-gray-200 flex items-center justify-center bg-gray-50 py-0 my-0">
           <div className="text-center">
             <Archive className="h-6 w-6 text-gray-400 mx-auto mb-2" />
