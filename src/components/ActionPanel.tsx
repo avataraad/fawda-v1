@@ -1,16 +1,29 @@
+
 import { Box, Minus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 interface ActionPanelProps {
   onClose: () => void;
 }
-const ActionPanel = ({
-  onClose
-}: ActionPanelProps) => {
-  return <div className="fixed inset-0 bg-opacity-50 bg-black/0">
+
+const ActionPanel = ({ onClose }: ActionPanelProps) => {
+  const navigate = useNavigate();
+
+  const handleStore = () => {
+    onClose();
+    navigate('/storage');
+  };
+
+  return (
+    <div className="fixed inset-0 bg-opacity-50 bg-black/0">
       <div className="fixed bottom-0 left-0 right-0">
-        <div className="bg-gray-900 text-white p-4 rounded-t-[2rem] mx-4 shadow-lg px-[16px] py-[20px] ">
+        <div className="bg-gray-900 text-white p-4 rounded-t-[2rem] mx-4 shadow-lg px-[16px] py-[20px]">
           <h2 className="text-xl font-medium mb-4">What's up?</h2>
           <div className="grid grid-cols-2 gap-4">
-            <button className="flex flex-col items-center text-center bg-gray-700 rounded-xl p-4">
+            <button 
+              onClick={handleStore}
+              className="flex flex-col items-center text-center bg-gray-700 rounded-xl p-4"
+            >
               <div className="bg-gray-600 rounded-full p-2 mb-2">
                 <Box className="h-6 w-6" />
               </div>
@@ -34,6 +47,8 @@ const ActionPanel = ({
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default ActionPanel;
