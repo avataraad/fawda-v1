@@ -1,6 +1,13 @@
 
 import { ArrowLeft, Bell, Menu, Calendar, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 import { useState } from "react";
 
 const Storage = () => {
@@ -41,76 +48,90 @@ const Storage = () => {
         
         <section className="mb-8">
           <h3 className="text-lg mb-4">Select boxes</h3>
-          <div className="grid grid-cols-3 gap-3">
-            <div className="bg-gray-800 rounded-xl p-4">
-              <div className="mb-2">
-                <div className="text-sm mb-1">Small</div>
-                <div className="text-xs text-gray-400">30 x 30 x 30cm</div>
-                <div className="text-sm">AED 19/mo</div>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <button 
-                  onClick={() => updateBoxCount('small', false)}
-                  className="bg-gray-700 rounded-full p-1"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span>{selectedBoxes.small}</span>
-                <button 
-                  onClick={() => updateBoxCount('small', true)}
-                  className="bg-gray-700 rounded-full p-1"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-gray-800 rounded-xl p-4">
-              <div className="mb-2">
-                <div className="text-sm mb-1">Medium</div>
-                <div className="text-xs text-gray-400">45 x 45 x 45cm</div>
-                <div className="text-sm">AED 29/mo</div>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <button 
-                  onClick={() => updateBoxCount('medium', false)}
-                  className="bg-gray-700 rounded-full p-1"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span>{selectedBoxes.medium}</span>
-                <button 
-                  onClick={() => updateBoxCount('medium', true)}
-                  className="bg-gray-700 rounded-full p-1"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-gray-800 rounded-xl p-4">
-              <div className="mb-2">
-                <div className="text-sm mb-1">Wardrobe</div>
-                <div className="text-xs text-gray-400">60 x 60 x 90cm</div>
-                <div className="text-sm">AED 49/mo</div>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <button 
-                  onClick={() => updateBoxCount('wardrobe', false)}
-                  className="bg-gray-700 rounded-full p-1"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span>{selectedBoxes.wardrobe}</span>
-                <button 
-                  onClick={() => updateBoxCount('wardrobe', true)}
-                  className="bg-gray-700 rounded-full p-1"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
+          <Carousel 
+            opts={{
+              align: "start",
+              loop: true
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              <CarouselItem className="basis-[150%] pl-4">
+                <div className="bg-gray-800 rounded-xl p-4 h-full">
+                  <div className="mb-2">
+                    <div className="text-sm mb-1">Small</div>
+                    <div className="text-xs text-gray-400">30 x 30 x 30cm</div>
+                    <div className="text-sm">AED 19/mo</div>
+                  </div>
+                  <div className="flex items-center justify-between mt-4">
+                    <button 
+                      onClick={() => updateBoxCount('small', false)}
+                      className="bg-gray-700 rounded-full p-1"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <span>{selectedBoxes.small}</span>
+                    <button 
+                      onClick={() => updateBoxCount('small', true)}
+                      className="bg-gray-700 rounded-full p-1"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="basis-[150%] pl-4">
+                <div className="bg-gray-800 rounded-xl p-4 h-full">
+                  <div className="mb-2">
+                    <div className="text-sm mb-1">Medium</div>
+                    <div className="text-xs text-gray-400">45 x 45 x 45cm</div>
+                    <div className="text-sm">AED 29/mo</div>
+                  </div>
+                  <div className="flex items-center justify-between mt-4">
+                    <button 
+                      onClick={() => updateBoxCount('medium', false)}
+                      className="bg-gray-700 rounded-full p-1"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <span>{selectedBoxes.medium}</span>
+                    <button 
+                      onClick={() => updateBoxCount('medium', true)}
+                      className="bg-gray-700 rounded-full p-1"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="basis-[150%] pl-4">
+                <div className="bg-gray-800 rounded-xl p-4 h-full">
+                  <div className="mb-2">
+                    <div className="text-sm mb-1">Wardrobe</div>
+                    <div className="text-xs text-gray-400">60 x 60 x 90cm</div>
+                    <div className="text-sm">AED 49/mo</div>
+                  </div>
+                  <div className="flex items-center justify-between mt-4">
+                    <button 
+                      onClick={() => updateBoxCount('wardrobe', false)}
+                      className="bg-gray-700 rounded-full p-1"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <span>{selectedBoxes.wardrobe}</span>
+                    <button 
+                      onClick={() => updateBoxCount('wardrobe', true)}
+                      className="bg-gray-700 rounded-full p-1"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="left-1" />
+            <CarouselNext className="right-1" />
+          </Carousel>
         </section>
 
         <section className="mb-8">
