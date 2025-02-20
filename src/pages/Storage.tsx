@@ -1,4 +1,3 @@
-
 import { ArrowLeft, Bell, Menu, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
@@ -127,35 +126,36 @@ const Storage = () => {
           </div>
           
           {deliveryOption === 'schedule' && (
-            <div className={`bg-gray-800 rounded-lg p-4 transition-colors mb-4 ${
-              deliveryDate ? 'bg-opacity-100' : 'bg-opacity-40'
-            }`}>
-              <CalendarComponent 
-                className="rounded-lg"
-                mode="single"
-                selected={deliveryDate}
-                onSelect={setDeliveryDate}
-                disabled={isDateDisabled}
-                fromDate={new Date()}
-                initialFocus
-              />
-            </div>
-          )}
-
-          {((deliveryOption === 'tomorrow' && deliveryDate) || (deliveryOption === 'schedule' && deliveryDate)) && (
-            <div className="grid grid-cols-4 gap-2">
-              {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => (
-                <button 
-                  key={time} 
-                  className={`bg-gray-800 p-2 rounded-lg text-center text-sm transition-colors ${
-                    selectedDeliveryTimeSlot === time ? 'bg-opacity-100' : 'bg-opacity-40'
-                  }`}
-                  onClick={() => setSelectedDeliveryTimeSlot(time)}
-                >
-                  {time}
-                </button>
-              ))}
-            </div>
+            <>
+              <div className={`bg-gray-800 rounded-lg p-4 transition-colors mb-4 ${
+                deliveryDate ? 'bg-opacity-100' : 'bg-opacity-40'
+              }`}>
+                <CalendarComponent 
+                  className="rounded-lg"
+                  mode="single"
+                  selected={deliveryDate}
+                  onSelect={setDeliveryDate}
+                  disabled={isDateDisabled}
+                  fromDate={new Date()}
+                  initialFocus
+                />
+              </div>
+              {deliveryDate && (
+                <div className="grid grid-cols-4 gap-2">
+                  {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => (
+                    <button 
+                      key={time} 
+                      className={`bg-gray-800 p-2 rounded-lg text-center text-sm transition-colors ${
+                        selectedDeliveryTimeSlot === time ? 'bg-opacity-100' : 'bg-opacity-40'
+                      }`}
+                      onClick={() => setSelectedDeliveryTimeSlot(time)}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </section>
 
