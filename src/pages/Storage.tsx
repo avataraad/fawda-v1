@@ -1,31 +1,20 @@
-
 import { ArrowLeft, Bell, Menu, Calendar, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useState } from "react";
-
 const Storage = () => {
   const [selectedBoxes, setSelectedBoxes] = useState({
     small: 0,
     medium: 0,
     wardrobe: 0
   });
-
   const updateBoxCount = (type: keyof typeof selectedBoxes, increment: boolean) => {
     setSelectedBoxes(prev => ({
       ...prev,
       [type]: increment ? prev[type] + 1 : Math.max(0, prev[type] - 1)
     }));
   };
-
-  return (
-    <main className="min-h-screen bg-gray-900 text-white">
+  return <main className="min-h-screen bg-gray-900 text-white">
       <div className="px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button onClick={() => window.history.back()}>
@@ -48,33 +37,24 @@ const Storage = () => {
         
         <section className="mb-8">
           <h3 className="text-lg mb-4">Select boxes</h3>
-          <Carousel 
-            opts={{
-              align: "start",
-              loop: true
-            }}
-            className="w-full"
-          >
+          <Carousel opts={{
+          align: "start",
+          loop: true
+        }} className="w-full">
             <CarouselContent>
               <CarouselItem className="basis-[150%] pl-4">
-                <div className="bg-gray-800 rounded-xl p-4 h-full">
+                <div className="bg-gray-800 p-4 h-full rounded-sm">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Small</div>
                     <div className="text-xs text-gray-400">30 x 30 x 30cm</div>
                     <div className="text-sm">AED 19/mo</div>
                   </div>
                   <div className="flex items-center justify-between mt-4">
-                    <button 
-                      onClick={() => updateBoxCount('small', false)}
-                      className="bg-gray-700 rounded-full p-1"
-                    >
+                    <button onClick={() => updateBoxCount('small', false)} className="bg-gray-700 rounded-full p-1">
                       <Minus className="h-4 w-4" />
                     </button>
                     <span>{selectedBoxes.small}</span>
-                    <button 
-                      onClick={() => updateBoxCount('small', true)}
-                      className="bg-gray-700 rounded-full p-1"
-                    >
+                    <button onClick={() => updateBoxCount('small', true)} className="bg-gray-700 rounded-full p-1">
                       <Plus className="h-4 w-4" />
                     </button>
                   </div>
@@ -88,17 +68,11 @@ const Storage = () => {
                     <div className="text-sm">AED 29/mo</div>
                   </div>
                   <div className="flex items-center justify-between mt-4">
-                    <button 
-                      onClick={() => updateBoxCount('medium', false)}
-                      className="bg-gray-700 rounded-full p-1"
-                    >
+                    <button onClick={() => updateBoxCount('medium', false)} className="bg-gray-700 rounded-full p-1">
                       <Minus className="h-4 w-4" />
                     </button>
                     <span>{selectedBoxes.medium}</span>
-                    <button 
-                      onClick={() => updateBoxCount('medium', true)}
-                      className="bg-gray-700 rounded-full p-1"
-                    >
+                    <button onClick={() => updateBoxCount('medium', true)} className="bg-gray-700 rounded-full p-1">
                       <Plus className="h-4 w-4" />
                     </button>
                   </div>
@@ -112,17 +86,11 @@ const Storage = () => {
                     <div className="text-sm">AED 49/mo</div>
                   </div>
                   <div className="flex items-center justify-between mt-4">
-                    <button 
-                      onClick={() => updateBoxCount('wardrobe', false)}
-                      className="bg-gray-700 rounded-full p-1"
-                    >
+                    <button onClick={() => updateBoxCount('wardrobe', false)} className="bg-gray-700 rounded-full p-1">
                       <Minus className="h-4 w-4" />
                     </button>
                     <span>{selectedBoxes.wardrobe}</span>
-                    <button 
-                      onClick={() => updateBoxCount('wardrobe', true)}
-                      className="bg-gray-700 rounded-full p-1"
-                    >
+                    <button onClick={() => updateBoxCount('wardrobe', true)} className="bg-gray-700 rounded-full p-1">
                       <Plus className="h-4 w-4" />
                     </button>
                   </div>
@@ -154,12 +122,7 @@ const Storage = () => {
               <Calendar className="h-5 w-5" />
               <span>March 2025</span>
             </div>
-            <CalendarComponent 
-              className="rounded-lg"
-              mode="single"
-              selected={new Date()}
-              onSelect={() => {}}
-            />
+            <CalendarComponent className="rounded-lg" mode="single" selected={new Date()} onSelect={() => {}} />
           </div>
         </section>
 
@@ -177,11 +140,9 @@ const Storage = () => {
           </div>
           
           <div className="grid grid-cols-4 gap-2">
-            {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map((time) => (
-              <button key={time} className="bg-gray-800 p-2 rounded-lg text-center text-sm">
+            {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => <button key={time} className="bg-gray-800 p-2 rounded-lg text-center text-sm">
                 {time}
-              </button>
-            ))}
+              </button>)}
           </div>
         </section>
 
@@ -189,8 +150,6 @@ const Storage = () => {
           Continue
         </button>
       </div>
-    </main>
-  );
+    </main>;
 };
-
 export default Storage;
