@@ -1,7 +1,6 @@
-
 import { ArrowLeft, Bell, Menu, Calendar, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useState } from "react";
 
 const Storage = () => {
@@ -42,11 +41,11 @@ const Storage = () => {
         <section className="mb-8">
           <h3 className="text-lg mb-4">Select boxes</h3>
           <Carousel opts={{
-          align: "start",
-          loop: true
-        }} className="w-full">
+            align: "start",
+            loop: true
+          }} className="w-full">
             <CarouselContent>
-              <CarouselItem className="basis-[48%] pl-4">
+              <CarouselItem className="basis-[45%] pl-4">
                 <div className="bg-gray-800 p-4 h-full rounded-xl">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Small</div>
@@ -64,7 +63,7 @@ const Storage = () => {
                   </div>
                 </div>
               </CarouselItem>
-              <CarouselItem className="basis-[48%] pl-4">
+              <CarouselItem className="basis-[45%] pl-4">
                 <div className="bg-gray-800 rounded-xl p-4 h-full">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Medium</div>
@@ -82,7 +81,7 @@ const Storage = () => {
                   </div>
                 </div>
               </CarouselItem>
-              <CarouselItem className="basis-[48%] pl-4">
+              <CarouselItem className="basis-[45%] pl-4">
                 <div className="bg-gray-800 rounded-xl p-4 h-full">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Wardrobe</div>
@@ -101,8 +100,6 @@ const Storage = () => {
                 </div>
               </CarouselItem>
             </CarouselContent>
-            <CarouselPrevious className="left-1" />
-            <CarouselNext className="right-1" />
           </Carousel>
         </section>
 
