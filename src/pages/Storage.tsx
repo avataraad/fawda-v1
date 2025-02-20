@@ -2,7 +2,7 @@ import { ArrowLeft, Bell, Menu, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useState } from "react";
-import { isSameMonth, startOfToday, isAfter } from "date-fns";
+import { isSameMonth, startOfToday, isBefore } from "date-fns";
 
 const Storage = () => {
   const [selectedBoxes, setSelectedBoxes] = useState({
@@ -26,7 +26,7 @@ const Storage = () => {
 
   const isDateDisabled = (date: Date) => {
     const today = startOfToday();
-    return !isAfter(date, today) || !isSameMonth(date, today);
+    return isBefore(date, today) || !isSameMonth(date, today);
   };
 
   return <main className="min-h-screen bg-gray-900 text-white">
