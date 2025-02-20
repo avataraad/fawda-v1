@@ -14,6 +14,7 @@ const Storage = () => {
   const [deliveryOption, setDeliveryOption] = useState<'tomorrow' | 'schedule'>('tomorrow');
   const [pickupTimeOption, setPickupTimeOption] = useState<'flexible' | 'schedule'>('flexible');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
+  const [selectedDeliveryTimeSlot, setSelectedDeliveryTimeSlot] = useState<string | null>(null);
 
   const updateBoxCount = (type: keyof typeof selectedBoxes, increment: boolean) => {
     setSelectedBoxes(prev => ({
@@ -51,7 +52,9 @@ const Storage = () => {
           }} className="w-full">
             <CarouselContent>
               <CarouselItem className="basis-[45%] pl-4">
-                <div className="bg-gray-800 p-4 h-full rounded-xl">
+                <div className={`bg-gray-800 p-4 h-full rounded-xl transition-colors ${
+                  selectedBoxes.small > 0 ? 'bg-opacity-100' : 'bg-opacity-60'
+                }`}>
                   <div className="mb-2">
                     <div className="text-sm mb-1">Small</div>
                     <div className="text-xs text-gray-400">30 x 30 x 30cm</div>
@@ -69,7 +72,9 @@ const Storage = () => {
                 </div>
               </CarouselItem>
               <CarouselItem className="basis-[45%] pl-4">
-                <div className="bg-gray-800 rounded-xl p-4 h-full">
+                <div className={`bg-gray-800 p-4 h-full rounded-xl transition-colors ${
+                  selectedBoxes.medium > 0 ? 'bg-opacity-100' : 'bg-opacity-60'
+                }`}>
                   <div className="mb-2">
                     <div className="text-sm mb-1">Medium</div>
                     <div className="text-xs text-gray-400">45 x 45 x 45cm</div>
@@ -87,7 +92,9 @@ const Storage = () => {
                 </div>
               </CarouselItem>
               <CarouselItem className="basis-[45%] pl-4">
-                <div className="bg-gray-800 rounded-xl p-4 h-full">
+                <div className={`bg-gray-800 p-4 h-full rounded-xl transition-colors ${
+                  selectedBoxes.wardrobe > 0 ? 'bg-opacity-100' : 'bg-opacity-60'
+                }`}>
                   <div className="mb-2">
                     <div className="text-sm mb-1">Wardrobe</div>
                     <div className="text-xs text-gray-400">60 x 60 x 90cm</div>
@@ -110,10 +117,10 @@ const Storage = () => {
 
         <section className="mb-8">
           <h3 className="text-lg mb-4">Box delivery</h3>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 mb-4">
             <button 
               className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
-                deliveryOption === 'tomorrow' ? 'bg-opacity-100 ring-2 ring-purple-500' : 'bg-opacity-60'
+                deliveryOption === 'tomorrow' ? 'bg-opacity-100' : 'bg-opacity-60'
               }`}
               onClick={() => setDeliveryOption('tomorrow')}
             >
@@ -121,7 +128,7 @@ const Storage = () => {
             </button>
             <button 
               className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
-                deliveryOption === 'schedule' ? 'bg-opacity-100 ring-2 ring-purple-500' : 'bg-opacity-60'
+                deliveryOption === 'schedule' ? 'bg-opacity-100' : 'bg-opacity-60'
               }`}
               onClick={() => setDeliveryOption('schedule')}
             >
@@ -129,11 +136,29 @@ const Storage = () => {
               <div className="text-sm text-gray-400">Extra AED 9</div>
             </button>
           </div>
+          
+          {deliveryOption === 'schedule' && (
+            <div className="grid grid-cols-4 gap-2">
+              {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => (
+                <button 
+                  key={time} 
+                  className={`bg-gray-800 p-2 rounded-lg text-center text-sm transition-colors ${
+                    selectedDeliveryTimeSlot === time ? 'bg-opacity-100' : 'bg-opacity-60'
+                  }`}
+                  onClick={() => setSelectedDeliveryTimeSlot(time)}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          )}
         </section>
 
         <section className="mb-8">
           <h3 className="text-lg mb-4">Pick up date</h3>
-          <div className="bg-gray-800 rounded-lg p-4">
+          <div className={`bg-gray-800 rounded-lg p-4 transition-colors ${
+            false ? 'bg-opacity-100' : 'bg-opacity-60'
+          }`}>
             <div className="flex items-center gap-2 mb-4">
               <Calendar className="h-5 w-5" />
               <span>March 2025</span>
@@ -152,7 +177,7 @@ const Storage = () => {
           <div className="grid grid-cols-2 gap-3 mb-4">
             <button 
               className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
-                pickupTimeOption === 'flexible' ? 'bg-opacity-100 ring-2 ring-purple-500' : 'bg-opacity-60'
+                pickupTimeOption === 'flexible' ? 'bg-opacity-100' : 'bg-opacity-60'
               }`}
               onClick={() => setPickupTimeOption('flexible')}
             >
@@ -161,7 +186,7 @@ const Storage = () => {
             </button>
             <button 
               className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
-                pickupTimeOption === 'schedule' ? 'bg-opacity-100 ring-2 ring-purple-500' : 'bg-opacity-60'
+                pickupTimeOption === 'schedule' ? 'bg-opacity-100' : 'bg-opacity-60'
               }`}
               onClick={() => setPickupTimeOption('schedule')}
             >
@@ -176,7 +201,7 @@ const Storage = () => {
                 <button 
                   key={time} 
                   className={`bg-gray-800 p-2 rounded-lg text-center text-sm transition-colors ${
-                    selectedTimeSlot === time ? 'bg-opacity-100 ring-2 ring-purple-500' : 'bg-opacity-60'
+                    selectedTimeSlot === time ? 'bg-opacity-100' : 'bg-opacity-60'
                   }`}
                   onClick={() => setSelectedTimeSlot(time)}
                 >
