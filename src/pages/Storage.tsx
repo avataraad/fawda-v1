@@ -2,6 +2,7 @@ import { ArrowLeft, Bell, Menu, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useState } from "react";
+import { isSameMonth, startOfToday, isAfter } from "date-fns";
 
 const Storage = () => {
   const [selectedBoxes, setSelectedBoxes] = useState({
@@ -24,9 +25,8 @@ const Storage = () => {
   };
 
   const isDateDisabled = (date: Date) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return date < today;
+    const today = startOfToday();
+    return !isAfter(date, today) || !isSameMonth(date, today);
   };
 
   return <main className="min-h-screen bg-gray-900 text-white">
@@ -144,49 +144,52 @@ const Storage = () => {
               onSelect={setSelectedDate}
               disabled={isDateDisabled}
               fromDate={new Date()}
+              initialFocus
             />
           </div>
         </section>
 
-        <section className="mb-8">
-          <h3 className="text-lg mb-4">Pick up time</h3>
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <button 
-              className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
-                pickupTimeOption === 'flexible' ? 'bg-opacity-100' : 'bg-opacity-40'
-              }`}
-              onClick={() => setPickupTimeOption('flexible')}
-            >
-              <div>Flexible</div>
-              <div className="text-sm text-gray-400">3-hr window</div>
-            </button>
-            <button 
-              className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
-                pickupTimeOption === 'schedule' ? 'bg-opacity-100' : 'bg-opacity-40'
-              }`}
-              onClick={() => setPickupTimeOption('schedule')}
-            >
-              <div>Schedule</div>
-              <div className="text-sm text-gray-400">Extra AED 9</div>
-            </button>
-          </div>
-          
-          {pickupTimeOption === 'schedule' && (
-            <div className="grid grid-cols-4 gap-2">
-              {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => (
-                <button 
-                  key={time} 
-                  className={`bg-gray-800 p-2 rounded-lg text-center text-sm transition-colors ${
-                    selectedTimeSlot === time ? 'bg-opacity-100' : 'bg-opacity-40'
-                  }`}
-                  onClick={() => setSelectedTimeSlot(time)}
-                >
-                  {time}
-                </button>
-              ))}
+        {selectedDate && (
+          <section className="mb-8">
+            <h3 className="text-lg mb-4">Pick up time</h3>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <button 
+                className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
+                  pickupTimeOption === 'flexible' ? 'bg-opacity-100' : 'bg-opacity-40'
+                }`}
+                onClick={() => setPickupTimeOption('flexible')}
+              >
+                <div>Flexible</div>
+                <div className="text-sm text-gray-400">3-hr window</div>
+              </button>
+              <button 
+                className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
+                  pickupTimeOption === 'schedule' ? 'bg-opacity-100' : 'bg-opacity-40'
+                }`}
+                onClick={() => setPickupTimeOption('schedule')}
+              >
+                <div>Schedule</div>
+                <div className="text-sm text-gray-400">Extra AED 9</div>
+              </button>
             </div>
-          )}
-        </section>
+            
+            {pickupTimeOption === 'schedule' && (
+              <div className="grid grid-cols-4 gap-2">
+                {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => (
+                  <button 
+                    key={time} 
+                    className={`bg-gray-800 p-2 rounded-lg text-center text-sm transition-colors ${
+                      selectedTimeSlot === time ? 'bg-opacity-100' : 'bg-opacity-40'
+                    }`}
+                    onClick={() => setSelectedTimeSlot(time)}
+                  >
+                    {time}
+                  </button>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         <button className="w-full bg-gray-800 text-white py-4 rounded-lg">
           Continue
