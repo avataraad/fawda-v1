@@ -1,19 +1,23 @@
+
 import { ArrowLeft, Bell, Menu, Calendar, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useState } from "react";
+
 const Storage = () => {
   const [selectedBoxes, setSelectedBoxes] = useState({
     small: 0,
     medium: 0,
     wardrobe: 0
   });
+
   const updateBoxCount = (type: keyof typeof selectedBoxes, increment: boolean) => {
     setSelectedBoxes(prev => ({
       ...prev,
       [type]: increment ? prev[type] + 1 : Math.max(0, prev[type] - 1)
     }));
   };
+
   return <main className="min-h-screen bg-gray-900 text-white">
       <div className="px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -42,7 +46,7 @@ const Storage = () => {
           loop: true
         }} className="w-full">
             <CarouselContent>
-              <CarouselItem className="basis-[150%] pl-4">
+              <CarouselItem className="basis-[48%] pl-4">
                 <div className="bg-gray-800 p-4 h-full rounded-xl">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Small</div>
@@ -60,7 +64,7 @@ const Storage = () => {
                   </div>
                 </div>
               </CarouselItem>
-              <CarouselItem className="basis-[150%] pl-4">
+              <CarouselItem className="basis-[48%] pl-4">
                 <div className="bg-gray-800 rounded-xl p-4 h-full">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Medium</div>
@@ -78,7 +82,7 @@ const Storage = () => {
                   </div>
                 </div>
               </CarouselItem>
-              <CarouselItem className="basis-[150%] pl-4">
+              <CarouselItem className="basis-[48%] pl-4">
                 <div className="bg-gray-800 rounded-xl p-4 h-full">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Wardrobe</div>
@@ -152,4 +156,5 @@ const Storage = () => {
       </div>
     </main>;
 };
+
 export default Storage;
