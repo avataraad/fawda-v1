@@ -1,4 +1,4 @@
-import { ArrowLeft, Bell, Menu, Calendar, Plus, Minus } from "lucide-react";
+import { ArrowLeft, Bell, Menu, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useState } from "react";
@@ -14,12 +14,19 @@ const Storage = () => {
   const [pickupTimeOption, setPickupTimeOption] = useState<'flexible' | 'schedule'>('flexible');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
   const [selectedDeliveryTimeSlot, setSelectedDeliveryTimeSlot] = useState<string | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
   const updateBoxCount = (type: keyof typeof selectedBoxes, increment: boolean) => {
     setSelectedBoxes(prev => ({
       ...prev,
       [type]: increment ? prev[type] + 1 : Math.max(0, prev[type] - 1)
     }));
+  };
+
+  const isDateDisabled = (date: Date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today;
   };
 
   return <main className="min-h-screen bg-gray-900 text-white">
@@ -128,17 +135,15 @@ const Storage = () => {
         <section className="mb-8">
           <h3 className="text-lg mb-4">Pick up date</h3>
           <div className={`bg-gray-800 rounded-lg p-4 transition-colors ${
-            false ? 'bg-opacity-100' : 'bg-opacity-40'
+            selectedDate ? 'bg-opacity-100' : 'bg-opacity-40'
           }`}>
-            <div className="flex items-center gap-2 mb-4">
-              <Calendar className="h-5 w-5" />
-              <span>March 2025</span>
-            </div>
             <CalendarComponent 
               className="rounded-lg" 
-              mode="single" 
-              selected={new Date()} 
-              onSelect={() => {}} 
+              mode="single"
+              selected={selectedDate}
+              onSelect={setSelectedDate}
+              disabled={isDateDisabled}
+              fromDate={new Date()}
             />
           </div>
         </section>
