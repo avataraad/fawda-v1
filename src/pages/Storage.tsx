@@ -43,7 +43,7 @@ const Storage = () => {
         }} className="w-full">
             <CarouselContent>
               <CarouselItem className="basis-[150%] pl-4">
-                <div className="bg-gray-800 p-4 h-full rounded-sm">
+                <div className="bg-gray-800 p-4 h-full rounded-xl">
                   <div className="mb-2">
                     <div className="text-sm mb-1">Small</div>
                     <div className="text-xs text-gray-400">30 x 30 x 30cm</div>
