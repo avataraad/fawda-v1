@@ -1,8 +1,9 @@
+
 import { ArrowLeft, Bell, Menu, Plus, Minus } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useState } from "react";
-import { isSameMonth, startOfToday, isBefore } from "date-fns";
+import { isSameMonth, startOfToday, isBefore, addDays } from "date-fns";
 
 const Storage = () => {
   const [selectedBoxes, setSelectedBoxes] = useState({
@@ -12,6 +13,7 @@ const Storage = () => {
   });
 
   const [deliveryOption, setDeliveryOption] = useState<'tomorrow' | 'schedule'>('tomorrow');
+  const [deliveryDate, setDeliveryDate] = useState<Date | undefined>(undefined);
   const [pickupTimeOption, setPickupTimeOption] = useState<'flexible' | 'schedule'>('flexible');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
   const [selectedDeliveryTimeSlot, setSelectedDeliveryTimeSlot] = useState<string | null>(null);
@@ -100,15 +102,24 @@ const Storage = () => {
               className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
                 deliveryOption === 'tomorrow' ? 'bg-opacity-100' : 'bg-opacity-40'
               }`}
-              onClick={() => setDeliveryOption('tomorrow')}
+              onClick={() => {
+                setDeliveryOption('tomorrow');
+                setDeliveryDate(addDays(new Date(), 1));
+                setSelectedDeliveryTimeSlot(null);
+              }}
             >
-              Tomorrow
+              <div>Tomorrow</div>
+              <div className="text-sm text-gray-400">3-hr window</div>
             </button>
             <button 
               className={`bg-gray-800 py-3 px-4 rounded-lg text-left transition-colors ${
                 deliveryOption === 'schedule' ? 'bg-opacity-100' : 'bg-opacity-40'
               }`}
-              onClick={() => setDeliveryOption('schedule')}
+              onClick={() => {
+                setDeliveryOption('schedule');
+                setDeliveryDate(undefined);
+                setSelectedDeliveryTimeSlot(null);
+              }}
             >
               <div>Schedule</div>
               <div className="text-sm text-gray-400">Extra AED 9</div>
@@ -116,6 +127,22 @@ const Storage = () => {
           </div>
           
           {deliveryOption === 'schedule' && (
+            <div className={`bg-gray-800 rounded-lg p-4 transition-colors mb-4 ${
+              deliveryDate ? 'bg-opacity-100' : 'bg-opacity-40'
+            }`}>
+              <CalendarComponent 
+                className="rounded-lg"
+                mode="single"
+                selected={deliveryDate}
+                onSelect={setDeliveryDate}
+                disabled={isDateDisabled}
+                fromDate={new Date()}
+                initialFocus
+              />
+            </div>
+          )}
+
+          {((deliveryOption === 'tomorrow' && deliveryDate) || (deliveryOption === 'schedule' && deliveryDate)) && (
             <div className="grid grid-cols-4 gap-2">
               {["09:00 - 12:00", "12:00 - 15:00", "15:00 - 18:00", "18:00 - 21:00"].map(time => (
                 <button 
