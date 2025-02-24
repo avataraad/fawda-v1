@@ -13,7 +13,7 @@ const items: Item[] = [
     id: 1,
     title: "Christmas Decorations",
     description: "Trees, lights, and ornaments",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/6cae22c4-5ada-42ec-b7ae-7b039d2f843b.png"
   },
   {
     id: 2,
