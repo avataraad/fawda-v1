@@ -1,10 +1,13 @@
+
 import { Archive } from "lucide-react";
+
 interface Item {
   id: number;
   title: string;
   description: string;
   image?: string;
 }
+
 const items: Item[] = [{
   id: 1,
   title: "Christmas Decorations",
@@ -31,19 +34,32 @@ const items: Item[] = [{
   description: "Clothes and furniture",
   image: "/placeholder.svg"
 }];
+
 const ItemGrid = () => {
-  return <div className="px-4 grid grid-cols-2 gap-4 pb-24 pt-4">
-      {items.map(item => <div key={item.id} className="rounded-2xl border border-gray-200 overflow-hidden bg-white aspect-square">
-          <div className="aspect-[3/2] w-full bg-gray-50">
-            {item.image ? <img src={item.image} alt={item.title} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center">
+  return (
+    <div className="px-4 grid grid-cols-2 gap-4 pb-24 pt-4">
+      {items.map(item => (
+        <div key={item.id} 
+             className="group rounded-2xl border border-gray-200/50 overflow-hidden bg-white aspect-square shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-300">
+          <div className="aspect-[3/2] w-full bg-gray-50 group-hover:opacity-95 transition-opacity">
+            {item.image ? (
+              <img src={item.image} 
+                   alt={item.title} 
+                   className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
                 <Archive className="h-12 w-12 text-gray-400" />
-              </div>}
+              </div>
+            )}
           </div>
-          <div className="flex flex-col justify-center leading-tight py-1.5 px-3">
-            <p className="font-bold text-gray-900 text-sm truncate">{item.title}</p>
-            <p className="text-gray-500 text-xs mt-1 truncate">{item.description}</p>
+          <div className="flex flex-col justify-center leading-tight py-2.5 px-3">
+            <p className="font-semibold text-gray-900 text-sm truncate">{item.title}</p>
+            <p className="text-gray-500 text-xs mt-0.5 truncate">{item.description}</p>
           </div>
-        </div>)}
-    </div>;
+        </div>
+      ))}
+    </div>
+  );
 };
+
 export default ItemGrid;

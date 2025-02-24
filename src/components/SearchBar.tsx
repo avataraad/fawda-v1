@@ -8,9 +8,11 @@ const SearchBar = () => {
         <input
           type="text"
           placeholder="Rummage through your stuff"
-          className="w-full py-2.5 px-4 pl-10 rounded-lg border border-gray-300 text-sm placeholder:text-gray-500"
+          className="w-full py-3 px-4 pl-11 rounded-2xl border border-gray-200/50 text-sm placeholder:text-gray-400 
+                   shadow-sm transition-all duration-300 
+                   focus:border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-300"
         />
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
       </div>
     </div>
   );
