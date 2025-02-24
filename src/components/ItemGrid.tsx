@@ -19,7 +19,7 @@ const items: Item[] = [
     id: 2,
     title: "Bicycles",
     description: "Mountain and road bikes",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/1e59d9b6-9cab-452e-8557-bfbc9250323d.png"
   },
   {
     id: 3,
