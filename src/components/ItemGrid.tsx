@@ -39,7 +39,7 @@ const ItemGrid = () => {
                 <Archive className="h-12 w-12 text-gray-400" />
               </div>}
           </div>
-          <div className="flex flex-col justify-center leading-tight p-3">
+          <div className="flex flex-col justify-center leading-tight py-1.5 px-3">
             <p className="font-bold text-gray-900 text-sm truncate">{item.title}</p>
             <p className="text-gray-500 text-xs mt-1 truncate">{item.description}</p>
           </div>
