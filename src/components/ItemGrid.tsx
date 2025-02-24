@@ -62,9 +62,9 @@ const ItemGrid = () => {
               </div>
             )}
           </div>
-          <div className="p-3">
+          <div className="p-3 text-center">
             <p className="font-bold text-gray-900 text-sm truncate">{item.title}</p>
-            <p className="text-gray-500 text-xs mt-1 truncate">{item.description}</p>
+            <p className="text-gray-500 text-xs truncate mt-0.5">{item.description}</p>
           </div>
         </div>
       ))}
