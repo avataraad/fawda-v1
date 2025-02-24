@@ -63,8 +63,8 @@ const ItemGrid = () => {
             )}
           </div>
           <div className="p-3">
-            <p className="font-bold text-gray-900 text-sm">{item.title}</p>
-            <p className="text-gray-500 text-xs mt-1">{item.description}</p>
+            <p className="font-bold text-gray-900 text-sm truncate">{item.title}</p>
+            <p className="text-gray-500 text-xs mt-1 line-clamp-2">{item.description}</p>
           </div>
         </div>
       ))}
