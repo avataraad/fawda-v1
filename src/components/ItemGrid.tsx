@@ -11,31 +11,33 @@ interface Item {
 const items: Item[] = [
   {
     id: 1,
-    title: "Winter Clothes",
-    description: "Coats, sweaters, and boots",
+    title: "Christmas Decorations",
+    description: "Trees, lights, and ornaments",
     image: "/placeholder.svg"
   },
   {
     id: 2,
-    title: "Books",
-    description: "Old university textbooks",
+    title: "Bicycles",
+    description: "Mountain and road bikes",
     image: "/placeholder.svg"
   },
   {
     id: 3,
-    title: "Kitchen Items",
-    description: "Extra plates and utensils"
+    title: "Skiis",
+    description: "Skis and winter gear",
+    image: "/placeholder.svg"
   },
   {
     id: 4,
-    title: "Documents",
-    description: "Important paperwork and files",
+    title: "Camping Gear",
+    description: "Tents and equipment",
     image: "/placeholder.svg"
   },
   {
     id: 5,
-    title: "Electronics",
-    description: "Old phones and cables"
+    title: "Baby",
+    description: "Clothes and furniture",
+    image: "/placeholder.svg"
   }
 ];
 
