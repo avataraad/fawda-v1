@@ -37,10 +37,10 @@ const items: Item[] = [{
 
 const ItemGrid = () => {
   return (
-    <div className="px-4 grid grid-cols-2 gap-4 pb-24 pt-4">
+    <div className="px-4 grid grid-cols-2 gap-4 pb-24">
       {items.map(item => (
         <div key={item.id} 
-             className="group rounded-2xl border border-gray-200/50 overflow-hidden bg-white aspect-square shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-300">
+             className="group rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:border-teal-600">
           <div className="aspect-[3/2] w-full bg-gray-50 group-hover:opacity-95 transition-opacity">
             {item.image ? (
               <img src={item.image} 
@@ -52,9 +52,9 @@ const ItemGrid = () => {
               </div>
             )}
           </div>
-          <div className="flex flex-col justify-center leading-tight py-2.5 px-3">
-            <p className="font-semibold text-gray-900 text-sm truncate">{item.title}</p>
-            <p className="text-gray-500 text-xs mt-0.5 truncate">{item.description}</p>
+          <div className="p-4">
+            <p className="font-medium text-gray-900 text-base mb-1">{item.title}</p>
+            <p className="text-gray-600 text-sm">{item.description}</p>
           </div>
         </div>
       ))}
