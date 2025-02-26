@@ -27,11 +27,12 @@ const Storage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white">
+    <main className="min-h-screen bg-gray-50">
       <Header />
       
-      <div className="px-4 py-6">
-        <h2 className="text-2xl mb-8">Tell us what you need</h2>
+      <div className="px-4 py-6 max-w-3xl mx-auto">
+        <h1 className="text-[2.75rem] leading-tight font-serif text-gray-900 mb-2">Select storage size</h1>
+        <p className="text-gray-600 text-lg mb-8">What would you like to store with us?</p>
         
         <BoxSelection 
           selectedBoxes={selectedBoxes}
@@ -56,7 +57,7 @@ const Storage = () => {
           onTimeSlotChange={setSelectedTimeSlot}
         />
 
-        <button className="w-full bg-gray-800 text-white py-4 rounded-lg">
+        <button className="w-full bg-teal-600 text-white py-4 rounded-lg text-lg font-medium hover:bg-teal-700 transition-colors">
           Continue
         </button>
       </div>

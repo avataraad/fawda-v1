@@ -13,8 +13,8 @@ interface BoxSelectionProps {
 
 export const BoxSelection = ({ selectedBoxes, onUpdateBoxCount }: BoxSelectionProps) => {
   return (
-    <section className="mb-8">
-      <h3 className="text-lg mb-4">Select boxes</h3>
+    <section className="mb-12">
+      <h3 className="text-2xl font-serif text-gray-900 mb-6">Select boxes</h3>
       <Carousel opts={{
         align: "start",
         loop: true
@@ -25,28 +25,30 @@ export const BoxSelection = ({ selectedBoxes, onUpdateBoxCount }: BoxSelectionPr
             { type: 'medium', size: '45 x 45 x 45cm', price: 29 },
             { type: 'wardrobe', size: '60 x 60 x 90cm', price: 49 }
           ].map((box) => (
-            <CarouselItem key={box.type} className="basis-[45%] pl-4">
-              <div className={`bg-gray-800 p-4 h-full rounded-xl transition-colors ${
-                selectedBoxes[box.type as keyof typeof selectedBoxes] > 0 ? 'bg-opacity-100' : 'bg-opacity-40'
+            <CarouselItem key={box.type} className="basis-[calc(50%-12px)] pl-4">
+              <div className={`bg-white p-6 h-full rounded-xl transition-all duration-300 border ${
+                selectedBoxes[box.type as keyof typeof selectedBoxes] > 0 
+                ? 'border-teal-600 shadow-md' 
+                : 'border-gray-200'
               }`}>
-                <div className="mb-2">
-                  <div className="text-sm mb-1 capitalize">{box.type}</div>
-                  <div className="text-xs text-gray-400">{box.size}</div>
-                  <div className="text-sm">AED {box.price}/mo</div>
+                <div className="mb-4">
+                  <div className="text-lg font-medium text-gray-900 capitalize mb-1">{box.type}</div>
+                  <div className="text-sm text-gray-500">{box.size}</div>
+                  <div className="text-lg font-medium text-teal-600 mt-2">AED {box.price}/mo</div>
                 </div>
                 <div className="flex items-center justify-between mt-4">
                   <button 
                     onClick={() => onUpdateBoxCount(box.type as keyof typeof selectedBoxes, false)} 
-                    className="bg-gray-700 rounded-full p-1"
+                    className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors"
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-5 w-5 text-gray-600" />
                   </button>
-                  <span>{selectedBoxes[box.type as keyof typeof selectedBoxes]}</span>
+                  <span className="text-lg font-medium">{selectedBoxes[box.type as keyof typeof selectedBoxes]}</span>
                   <button 
                     onClick={() => onUpdateBoxCount(box.type as keyof typeof selectedBoxes, true)} 
-                    className="bg-gray-700 rounded-full p-1"
+                    className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-5 w-5 text-gray-600" />
                   </button>
                 </div>
               </div>
